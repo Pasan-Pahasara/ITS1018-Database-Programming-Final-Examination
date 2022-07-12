@@ -25,6 +25,11 @@
             </LinearGradient>
          </fill>
       </Rectangle>
+      <AnchorPane layoutX="518.0" layoutY="68.0" prefHeight="44.0" prefWidth="243.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" color="#cdcdcd" offsetY="4.0" />
+         </effect>
+      </AnchorPane>
       <AnchorPane layoutX="59.0" layoutY="123.0" prefHeight="144.0" prefWidth="814.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" color="#cdcdcd" offsetY="4.0" />
@@ -62,5 +67,6 @@
       <Separator layoutX="358.0" layoutY="43.0" prefHeight="0.0" prefWidth="403.0" />
       <JFXTextField fx:id="txtStudentName" labelFloat="true" layoutX="483.0" layoutY="124.0" prefHeight="31.0" prefWidth="358.0" promptText="Student Name :" />
       <JFXTextField fx:id="txtStudentNic" labelFloat="true" layoutX="482.0" layoutY="223.0" prefHeight="31.0" prefWidth="358.0" promptText="Nic :" />
+      <JFXTextField fx:id="searchID" layoutX="577.0" layoutY="72.0" onAction="#search" promptText="Search Student ID" />
    </children>
 </AnchorPane>

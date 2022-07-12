@@ -33,6 +33,7 @@ public class StudentManageFormController {
     public JFXButton btnAddNew;
     public JFXButton btnSave;
     public JFXButton btnDelete;
+    public JFXTextField searchID;
 
     /**
      * Initializes the controller class.
@@ -175,5 +176,25 @@ public class StudentManageFormController {
         } catch (SQLException | ClassNotFoundException e) {
 
         }
+    }
+
+    /**
+     * Search Students.
+     */
+    public void search() throws SQLException, ClassNotFoundException {
+
+        ResultSet result = CrudUtil.execute("SELECT * FROM Student WHERE studentId=?", searchID.getText());
+        if (result.next()) {
+
+            txtStudentId.setText(result.getString(1));
+            txtStudentName.setText(result.getString(2));
+            txtStudentEmail.setText(result.getString(3));
+            txtStudentContact.setText(result.getString(4));
+            txtStudentAddress.setText(result.getString(5));
+            txtStudentNic.setText(result.getString(6));
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Empty Result").show();
+        }
+        tblStudents.refresh();
     }
 }
