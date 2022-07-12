@@ -2,11 +2,19 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import db.DBConnection;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.Student;
+import views.tm.StudentTM;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * @author : Pasan Pahasara
@@ -20,7 +28,7 @@ public class StudentManageFormController {
     public JFXTextField txtStudentContact;
     public JFXTextField txtStudentAddress;
     public JFXTextField txtStudentNic;
-    public TableView <Student>tblStudents;
+    public TableView <StudentTM>tblStudents;
     public JFXButton btnAddNew;
     public JFXButton btnSave;
     public JFXButton btnDelete;
@@ -39,7 +47,23 @@ public class StudentManageFormController {
         loadAllStudents();
     }
 
+    /**
+     * Load All Students.
+     */
     private void loadAllStudents() {
+        tblStudents.getItems().clear();
+        //Get all Student/
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            Statement stm = connection.createStatement();
+            ResultSet rst = stm.executeQuery("SELECT * FROM Student");
+
+            while (rst.next()) {
+                tblStudents.getItems().add(new StudentTM(rst.getString("studentId"), rst.getString("studentName"), rst.getString("email"), rst.getString("contact"), rst.getString("address"), rst.getString("nic")));
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
     }
 
     public void btnAddNew_OnAction(ActionEvent actionEvent) {
