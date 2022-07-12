@@ -251,6 +251,7 @@ public class StudentManageFormController {
             txtStudentContact.setText(result.getString(4));
             txtStudentAddress.setText(result.getString(5));
             txtStudentNic.setText(result.getString(6));
+            searchID.clear();
         } else {
             new Alert(Alert.AlertType.WARNING, "Empty Result").show();
         }

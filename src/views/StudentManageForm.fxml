@@ -7,6 +7,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
@@ -29,14 +31,18 @@
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" color="#cdcdcd" offsetY="4.0" />
          </effect>
+         <children>
+            <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="16.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/searchimage.png" />
+               </image>
+            </ImageView>
+         </children>
       </AnchorPane>
       <AnchorPane layoutX="59.0" layoutY="123.0" prefHeight="144.0" prefWidth="814.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" color="#cdcdcd" offsetY="4.0" />
          </effect>
-         <children>
-            <JFXTextField fx:id="txtStudentAddress" labelFloat="true" layoutX="31.0" layoutY="100.0" prefHeight="31.0" prefWidth="358.0" promptText="Address :" />
-         </children>
       </AnchorPane>
       <AnchorPane layoutX="58.0" layoutY="301.0" prefHeight="251.0" prefWidth="814.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <effect>
@@ -50,8 +56,11 @@
       </Label>
       <JFXButton id="btnAddNewCustomer" fx:id="btnAddNew" buttonType="RAISED" layoutX="776.0" layoutY="26.0" onAction="#btnAddNew_OnAction" prefHeight="35.0" prefWidth="133.0" style="-fx-cursor: hand;" text="+ New Student" />
       <JFXTextField fx:id="txtStudentId" labelFloat="true" layoutX="90.0" layoutY="123.0" prefHeight="29.0" prefWidth="358.0" promptText="Student ID :" />
+      <JFXTextField fx:id="txtStudentName" labelFloat="true" layoutX="483.0" layoutY="124.0" prefHeight="31.0" prefWidth="358.0" promptText="Student Name :" />
       <JFXTextField fx:id="txtStudentEmail" labelFloat="true" layoutX="90.0" layoutY="174.0" prefHeight="31.0" prefWidth="358.0" promptText="Email :" />
       <JFXTextField fx:id="txtStudentContact" labelFloat="true" layoutX="482.0" layoutY="174.0" prefHeight="31.0" prefWidth="358.0" promptText="Contact :" />
+      <JFXTextField fx:id="txtStudentAddress" labelFloat="true" layoutX="90.0" layoutY="222.0" prefHeight="31.0" prefWidth="358.0" promptText="Address :" />
+      <JFXTextField fx:id="txtStudentNic" labelFloat="true" layoutX="482.0" layoutY="223.0" prefHeight="31.0" prefWidth="358.0" promptText="Nic :" />
       <JFXButton id="btnSave" fx:id="btnSave" buttonType="RAISED" layoutX="839.0" layoutY="564.0" onAction="#btnSave_OnAction" prefHeight="31.0" prefWidth="82.0" style="-fx-cursor: hand;" text="Save" />
       <JFXButton id="btnDelete" fx:id="btnDelete" buttonType="RAISED" layoutX="827.0" layoutY="74.0" onAction="#btnDelete_OnAction" prefHeight="31.0" prefWidth="82.0" style="-fx-cursor: hand;" text="Delete" />
       <TableView fx:id="tblStudents" layoutX="71.0" layoutY="309.0" prefHeight="228.0" prefWidth="787.0" style="-fx-border-color: #33A4DA;">
@@ -65,8 +74,6 @@
          </columns>
       </TableView>
       <Separator layoutX="358.0" layoutY="43.0" prefHeight="0.0" prefWidth="403.0" />
-      <JFXTextField fx:id="txtStudentName" labelFloat="true" layoutX="483.0" layoutY="124.0" prefHeight="31.0" prefWidth="358.0" promptText="Student Name :" />
-      <JFXTextField fx:id="txtStudentNic" labelFloat="true" layoutX="482.0" layoutY="223.0" prefHeight="31.0" prefWidth="358.0" promptText="Nic :" />
       <JFXTextField fx:id="searchID" layoutX="577.0" layoutY="72.0" onAction="#search" promptText="Search Student ID" />
    </children>
 </AnchorPane>
