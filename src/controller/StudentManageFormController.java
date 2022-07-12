@@ -8,14 +8,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import model.Student;
 import util.CrudUtil;
 import views.tm.StudentTM;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * @author : Pasan Pahasara
@@ -29,7 +25,7 @@ public class StudentManageFormController {
     public JFXTextField txtStudentContact;
     public JFXTextField txtStudentAddress;
     public JFXTextField txtStudentNic;
-    public TableView <StudentTM>tblStudents;
+    public TableView<StudentTM> tblStudents;
     public JFXButton btnAddNew;
     public JFXButton btnSave;
     public JFXButton btnDelete;
@@ -38,7 +34,7 @@ public class StudentManageFormController {
     /**
      * Initializes the controller class.
      */
-    public void initialize(){
+    public void initialize() {
         tblStudents.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("studentId"));
         tblStudents.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("studentName"));
         tblStudents.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -121,38 +117,101 @@ public class StudentManageFormController {
      * Generate New Student ID.
      */
     private String generateNewStudentId() {
-            try {
-                Connection connection = DBConnection.getInstance().getConnection();
-                ResultSet rst = connection.createStatement().executeQuery("SELECT studentId FROM Student ORDER BY studentId DESC LIMIT 1");
-                if (rst.next()) {
-                    String id = rst.getString("studentId");
-                    int newItemId = Integer.parseInt(id.replace("STU-", "")) + 1;
-                    return String.format("STU-%03d", newItemId);
-                } else {
-                    return "STU-001";
-                }
-            } catch (SQLException e) {
-                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            ResultSet rst = connection.createStatement().executeQuery("SELECT studentId FROM Student ORDER BY studentId DESC LIMIT 1");
+            if (rst.next()) {
+                String id = rst.getString("studentId");
+                int newItemId = Integer.parseInt(id.replace("STU-", "")) + 1;
+                return String.format("STU-%03d", newItemId);
+            } else {
+                return "STU-001";
             }
-            return "STU-001";
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return "STU-001";
     }
 
     /**
      * Save Students.
      */
     public void btnSave_OnAction(ActionEvent actionEvent) {
-        Student s = new Student(txtStudentId.getText(), txtStudentName.getText(), txtStudentEmail.getText(), txtStudentContact.getText(), txtStudentAddress.getText(), txtStudentNic.getText());
-        try {
-            if (CrudUtil.execute("INSERT INTO Student VALUES (?,?,?,?,?,?)", s.getStudentId(), s.getStudentName(), s.getEmail(), s.getContact(), s.getAddress(), s.getNic())) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Saved!..").show();
-                loadAllStudents();
+
+        String id = txtStudentId.getText();
+        String name = txtStudentName.getText();
+        String email = txtStudentEmail.getText();
+        String contact = txtStudentContact.getText();
+        String address = txtStudentAddress.getText();
+        String nic = txtStudentNic.getText();
+
+        if (btnSave.getText().equalsIgnoreCase("save")) {
+            //Save Customer
+            try {
+                if (existStudent(id)) {
+                    new Alert(Alert.AlertType.WARNING, "Save Student Warning..").show();
+                }
+                Connection connection = DBConnection.getInstance().getConnection();
+                PreparedStatement pstm = connection.prepareStatement("INSERT INTO Student (studentId,studentName, email,contact,address, nic) VALUES (?,?,?,?,?,?)");
+                pstm.setString(1, id);
+                pstm.setString(2, name);
+                pstm.setString(3, email);
+                pstm.setString(4, contact);
+                pstm.setString(5, address);
+                pstm.setString(6, nic);
+                pstm.executeUpdate();
+                tblStudents.getItems().add(new StudentTM(id, name, email, contact, address, nic));
+                new Alert(Alert.AlertType.CONFIRMATION, "Save Student..!").show();
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.WARNING, "Fail Save Student..").show();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+
+        } else {
+            //Update customer
+            try {
+                if (!existStudent(id)) {
+                    new Alert(Alert.AlertType.WARNING, "Update Student Warning..").show();
+                }
+                Connection connection = DBConnection.getInstance().getConnection();
+                PreparedStatement pstm = connection.prepareStatement("UPDATE Student SET studentName=?, email=?,contact=?, address=?,nic=? WHERE studentId=?");
+                pstm.setString(1, name);
+                pstm.setString(2, email);
+                pstm.setString(3, contact);
+                pstm.setString(4, address);
+                pstm.setString(5, nic);
+                pstm.setString(6, id);
+                pstm.executeUpdate();
+                new Alert(Alert.AlertType.CONFIRMATION, "Update Student..!").show();
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.WARNING, "Fail Update Student..").show();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            StudentTM selectedStudent = tblStudents.getSelectionModel().getSelectedItem();
+            selectedStudent.setStudentName(name);
+            selectedStudent.setEmail(email);
+            selectedStudent.setContact(contact);
+            selectedStudent.setAddress(address);
+            selectedStudent.setNic(nic);
+            tblStudents.refresh();
         }
+
+        btnAddNew.fire();
+    }
+
+    /**
+     * Exist Students.
+     */
+    private boolean existStudent(String id) throws SQLException, ClassNotFoundException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement("SELECT studentId FROM Student WHERE studentId=?");
+        pstm.setString(1, id);
+        return pstm.executeQuery().next();
     }
 
     /**
