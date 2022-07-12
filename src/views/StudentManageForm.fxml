@@ -1,104 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentManageFormController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="932.0" style="-fx-background-color: #F3F3F3;" stylesheets="@css/manageStudentForm.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentManageFormController">
    <children>
-      <AnchorPane fx:id="studentFormContext" layoutX="10.0" layoutY="10.0" prefHeight="634.0" prefWidth="853.0" stylesheets="@../../../../TPPDP/src/theme/css/ItemForm.css">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="130.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="932.0">
+         <fill>
+            <LinearGradient endX="0.05293129200896191" endY="1.0" startX="0.038834951456310676" startY="0.05825242718446602">
+               <stops>
+                  <Stop color="#1598d6" />
+                  <Stop color="#f3f3f3" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <AnchorPane layoutX="59.0" layoutY="123.0" prefHeight="144.0" prefWidth="814.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" color="#cdcdcd" offsetY="4.0" />
+         </effect>
          <children>
-            <ImageView fitHeight="634.0" fitWidth="853.0" layoutX="-1.0" layoutY="-3.0" pickOnBounds="true">
-               <image>
-                  <Image url="@../../../../TPPDP/src/assets/fast-food-junk-food-concept.jpg" />
-               </image>
-            </ImageView>
-            <Label layoutX="27.0" layoutY="14.0" prefHeight="59.0" prefWidth="342.0" text="Student Manage Form">
-               <font>
-                  <Font name="Bell MT Bold" size="32.0" />
-               </font>
-            </Label>
-            <Separator layoutX="387.0" layoutY="48.0" prefHeight="4.0" prefWidth="428.0" />
-            <AnchorPane layoutX="40.0" layoutY="98.0" prefHeight="42.0" prefWidth="289.0" styleClass="textPane">
-               <children>
-                  <TextField fx:id="txtSID" layoutX="13.0" layoutY="8.0" onAction="#save" onKeyReleased="#textFields_Key_Released" prefHeight="31.0" prefWidth="262.0" promptText="S00-001" styleClass="textField" />
-                  <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Student ID" />
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="369.0" layoutY="156.0" prefHeight="42.0" prefWidth="289.0" styleClass="textPane">
-               <children>
-                  <TextField fx:id="txtSContact" layoutX="13.0" layoutY="8.0" onKeyReleased="#textFields_Key_Released" prefHeight="31.0" prefWidth="262.0" promptText="0718599685" styleClass="textField" />
-                  <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Contact" />
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="369.0" layoutY="214.0" prefHeight="42.0" prefWidth="289.0" styleClass="textPane">
-               <children>
-                  <TextField fx:id="txtSNic" layoutX="13.0" layoutY="8.0" onKeyReleased="#textFields_Key_Released" prefHeight="31.0" prefWidth="262.0" promptText="7589688v" styleClass="textField" />
-                  <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Nic" />
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="40.0" layoutY="214.0" prefHeight="42.0" prefWidth="289.0" styleClass="textPane">
-               <children>
-                  <TextField fx:id="txtSAddress" layoutX="13.0" layoutY="8.0" onKeyReleased="#textFields_Key_Released" prefHeight="31.0" prefWidth="262.0" promptText="Galle" styleClass="textField" />
-                  <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Address" />
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="40.0" layoutY="156.0" prefHeight="42.0" prefWidth="289.0" styleClass="textPane">
-               <children>
-                  <TextField fx:id="txtSEmail" layoutX="13.0" layoutY="8.0" onKeyReleased="#textFields_Key_Released" prefHeight="31.0" prefWidth="262.0" promptText="Gune@gmail.com" styleClass="textField" />
-                  <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Email" />
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="364.0" layoutY="98.0" prefHeight="42.0" prefWidth="289.0" styleClass="textPane">
-               <children>
-                  <TextField fx:id="txtSName" layoutX="13.0" layoutY="8.0" onKeyReleased="#textFields_Key_Released" prefHeight="31.0" prefWidth="262.0" promptText="Gune" styleClass="textField" />
-                  <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Name" />
-               </children>
-            </AnchorPane>
-            <TableView fx:id="tblStudent" layoutX="45.0" layoutY="284.0" opacity="0.71" prefHeight="283.0" prefWidth="762.0">
-               <columns>
-                  <TableColumn fx:id="tblCusId" prefWidth="65.0" text="ID" />
-                  <TableColumn fx:id="tblCusName" prefWidth="119.0" text="Name" />
-                  <TableColumn fx:id="tblCusAddress" prefWidth="124.0" styleClass="lastCell" text="Email" />
-                  <TableColumn fx:id="tblCusCity" prefWidth="138.0" styleClass="lastCell" text="Contact" />
-                  <TableColumn fx:id="tblCusProvince" prefWidth="178.0" styleClass="lastCell" text="Address" />
-                  <TableColumn fx:id="tblCusCode" prefWidth="137.0" styleClass="lastCell" text="Nic" />
-               </columns>
-            </TableView>
-            <TextField fx:id="txtSearch" layoutX="669.0" layoutY="58.0" onAction="#txtSearchOnAction" prefHeight="31.0" prefWidth="161.0" promptText="Search" style="-fx-background-color: transparent; -fx-border-radius: 30; -fx-border-color: #888686;">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </TextField>
-            <ImageView fitHeight="50.0" fitWidth="41.0" layoutX="628.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../TPPDP/src/assets/searchimage.png" />
-               </image>
-            </ImageView>
-            <JFXButton buttonType="RAISED" layoutX="693.0" layoutY="234.0" onAction="#updateBtnOnAction" prefHeight="31.0" prefWidth="128.0" style="-fx-background-color: #F39C12; -fx-background-radius: 10;" text="Update" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </JFXButton>
-            <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="692.0" layoutY="186.0" onAction="#deleteBtnOnAction" prefHeight="31.0" prefWidth="128.0" style="-fx-background-color: ff3838; -fx-background-radius: 10;" text="Delete" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </JFXButton>
-            <JFXButton fx:id="btnSave" buttonType="RAISED" layoutX="706.0" layoutY="586.0" onAction="#saveBtnOnAction" prefHeight="31.0" prefWidth="128.0" style="-fx-background-color: #27AE60; -fx-background-radius: 10;" text="Save" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </JFXButton>
+            <JFXTextField fx:id="txtStudentAddress" labelFloat="true" layoutX="31.0" layoutY="100.0" prefHeight="31.0" prefWidth="358.0" promptText="Address :" />
          </children>
       </AnchorPane>
+      <AnchorPane layoutX="58.0" layoutY="301.0" prefHeight="251.0" prefWidth="814.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" color="#cdcdcd" offsetY="4.0" />
+         </effect>
+      </AnchorPane>
+      <Label layoutX="62.0" layoutY="18.0" text="Manage Student">
+         <font>
+            <Font name="Bell MT Bold" size="36.0" />
+         </font>
+      </Label>
+      <JFXButton id="btnAddNewCustomer" fx:id="btnAddNew" buttonType="RAISED" layoutX="776.0" layoutY="26.0" onAction="#btnAddNew_OnAction" prefHeight="35.0" prefWidth="133.0" style="-fx-cursor: hand;" text="+ New Student" />
+      <JFXTextField fx:id="txtStudentId" labelFloat="true" layoutX="90.0" layoutY="123.0" prefHeight="29.0" prefWidth="358.0" promptText="Student ID :" />
+      <JFXTextField fx:id="txtStudentEmail" labelFloat="true" layoutX="90.0" layoutY="174.0" prefHeight="31.0" prefWidth="358.0" promptText="Email :" />
+      <JFXTextField fx:id="txtStudentContact" labelFloat="true" layoutX="482.0" layoutY="174.0" prefHeight="31.0" prefWidth="358.0" promptText="Contact :" />
+      <JFXButton id="btnSave" fx:id="btnSave" buttonType="RAISED" layoutX="839.0" layoutY="564.0" onAction="#btnSave_OnAction" prefHeight="31.0" prefWidth="82.0" style="-fx-cursor: hand;" text="Save" />
+      <JFXButton id="btnDelete" fx:id="btnDelete" buttonType="RAISED" layoutX="827.0" layoutY="74.0" onAction="#btnDelete_OnAction" prefHeight="31.0" prefWidth="82.0" style="-fx-cursor: hand;" text="Delete" />
+      <TableView fx:id="tblStudents" layoutX="71.0" layoutY="309.0" prefHeight="228.0" prefWidth="787.0" style="-fx-border-color: #33A4DA;">
+         <columns>
+            <TableColumn prefWidth="87.0" text="Student ID" />
+            <TableColumn prefWidth="148.0" text="Name" />
+            <TableColumn prefWidth="169.0" text="Email" />
+            <TableColumn prefWidth="100.0" text="Contact" />
+            <TableColumn prefWidth="134.0" text="Address" />
+            <TableColumn prefWidth="145.0" text="Nic" />
+         </columns>
+      </TableView>
+      <Separator layoutX="358.0" layoutY="43.0" prefHeight="0.0" prefWidth="403.0" />
+      <JFXTextField fx:id="txtStudentName" labelFloat="true" layoutX="483.0" layoutY="124.0" prefHeight="31.0" prefWidth="358.0" promptText="Student Name :" />
+      <JFXTextField fx:id="txtStudentNic" labelFloat="true" layoutX="482.0" layoutY="223.0" prefHeight="31.0" prefWidth="358.0" promptText="Nic :" />
    </children>
 </AnchorPane>
