@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentManageFormController">
+   <children>
+      <AnchorPane fx:id="studentFormContext" layoutX="10.0" layoutY="10.0" prefHeight="634.0" prefWidth="853.0" stylesheets="@../../../../TPPDP/src/theme/css/ItemForm.css">
+         <children>
+            <ImageView fitHeight="634.0" fitWidth="853.0" layoutX="-1.0" layoutY="-3.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../../../TPPDP/src/assets/fast-food-junk-food-concept.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="27.0" layoutY="14.0" prefHeight="59.0" prefWidth="342.0" text="Student Manage Form">
+               <font>
+                  <Font name="Bell MT Bold" size="32.0" />
+               </font>
+            </Label>
+            <Separator layoutX="387.0" layoutY="48.0" prefHeight="4.0" prefWidth="428.0" />
+            <AnchorPane layoutX="40.0" layoutY="98.0" prefHeight="42.0" prefWidth="289.0" styleClass="textPane">
+               <children>
+                  <TextField fx:id="txtSID" layoutX="13.0" layoutY="8.0" onAction="#save" onKeyReleased="#textFields_Key_Released" prefHeight="31.0" prefWidth="262.0" promptText="S00-001" styleClass="textField" />
+                  <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Student ID" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="369.0" layoutY="156.0" prefHeight="42.0" prefWidth="289.0" styleClass="textPane">
+               <children>
+                  <TextField fx:id="txtSContact" layoutX="13.0" layoutY="8.0" onKeyReleased="#textFields_Key_Released" prefHeight="31.0" prefWidth="262.0" promptText="0718599685" styleClass="textField" />
+                  <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Contact" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="369.0" layoutY="214.0" prefHeight="42.0" prefWidth="289.0" styleClass="textPane">
+               <children>
+                  <TextField fx:id="txtSNic" layoutX="13.0" layoutY="8.0" onKeyReleased="#textFields_Key_Released" prefHeight="31.0" prefWidth="262.0" promptText="7589688v" styleClass="textField" />
+                  <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Nic" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="40.0" layoutY="214.0" prefHeight="42.0" prefWidth="289.0" styleClass="textPane">
+               <children>
+                  <TextField fx:id="txtSAddress" layoutX="13.0" layoutY="8.0" onKeyReleased="#textFields_Key_Released" prefHeight="31.0" prefWidth="262.0" promptText="Galle" styleClass="textField" />
+                  <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Address" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="40.0" layoutY="156.0" prefHeight="42.0" prefWidth="289.0" styleClass="textPane">
+               <children>
+                  <TextField fx:id="txtSEmail" layoutX="13.0" layoutY="8.0" onKeyReleased="#textFields_Key_Released" prefHeight="31.0" prefWidth="262.0" promptText="Gune@gmail.com" styleClass="textField" />
+                  <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Email" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="364.0" layoutY="98.0" prefHeight="42.0" prefWidth="289.0" styleClass="textPane">
+               <children>
+                  <TextField fx:id="txtSName" layoutX="13.0" layoutY="8.0" onKeyReleased="#textFields_Key_Released" prefHeight="31.0" prefWidth="262.0" promptText="Gune" styleClass="textField" />
+                  <Label layoutX="2.0" layoutY="-9.0" styleClass="textLabel" text="Name" />
+               </children>
+            </AnchorPane>
+            <TableView fx:id="tblStudent" layoutX="45.0" layoutY="284.0" opacity="0.71" prefHeight="283.0" prefWidth="762.0">
+               <columns>
+                  <TableColumn fx:id="tblCusId" prefWidth="65.0" text="ID" />
+                  <TableColumn fx:id="tblCusName" prefWidth="119.0" text="Name" />
+                  <TableColumn fx:id="tblCusAddress" prefWidth="124.0" styleClass="lastCell" text="Email" />
+                  <TableColumn fx:id="tblCusCity" prefWidth="138.0" styleClass="lastCell" text="Contact" />
+                  <TableColumn fx:id="tblCusProvince" prefWidth="178.0" styleClass="lastCell" text="Address" />
+                  <TableColumn fx:id="tblCusCode" prefWidth="137.0" styleClass="lastCell" text="Nic" />
+               </columns>
+            </TableView>
+            <TextField fx:id="txtSearch" layoutX="669.0" layoutY="58.0" onAction="#txtSearchOnAction" prefHeight="31.0" prefWidth="161.0" promptText="Search" style="-fx-background-color: transparent; -fx-border-radius: 30; -fx-border-color: #888686;">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </TextField>
+            <ImageView fitHeight="50.0" fitWidth="41.0" layoutX="628.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../TPPDP/src/assets/searchimage.png" />
+               </image>
+            </ImageView>
+            <JFXButton buttonType="RAISED" layoutX="693.0" layoutY="234.0" onAction="#updateBtnOnAction" prefHeight="31.0" prefWidth="128.0" style="-fx-background-color: #F39C12; -fx-background-radius: 10;" text="Update" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="692.0" layoutY="186.0" onAction="#deleteBtnOnAction" prefHeight="31.0" prefWidth="128.0" style="-fx-background-color: ff3838; -fx-background-radius: 10;" text="Delete" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnSave" buttonType="RAISED" layoutX="706.0" layoutY="586.0" onAction="#saveBtnOnAction" prefHeight="31.0" prefWidth="128.0" style="-fx-background-color: #27AE60; -fx-background-radius: 10;" text="Save" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
