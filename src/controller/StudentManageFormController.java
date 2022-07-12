@@ -86,6 +86,20 @@ public class StudentManageFormController {
         }
     }
 
+    /**
+     * Delete Students.
+     */
     public void btnDelete_OnAction(ActionEvent actionEvent) {
+        try {
+            if (CrudUtil.execute("DELETE FROM Student WHERE studentId=?", txtStudentId.getText())) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Deleted!").show();
+                loadAllStudents();
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Try Again!").show();
+            }
+
+        } catch (SQLException | ClassNotFoundException e) {
+
+        }
     }
 }
