@@ -46,6 +46,30 @@ public class StudentManageFormController {
         tblStudents.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("nic"));
 
         loadAllStudents();
+        tblStudents.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            btnDelete.setDisable(newValue == null);
+            btnSave.setText(newValue != null ? "Update" : "Save");
+            btnSave.setDisable(newValue == null);
+
+            if (newValue != null) {
+                txtStudentId.setText(newValue.getStudentId());
+                txtStudentName.setText(newValue.getStudentName());
+                txtStudentEmail.setText(newValue.getEmail());
+                txtStudentContact.setText(newValue.getContact());
+                txtStudentAddress.setText(newValue.getAddress());
+                txtStudentNic.setText(newValue.getNic());
+
+
+                txtStudentId.setDisable(false);
+                txtStudentName.setDisable(false);
+                txtStudentEmail.setDisable(false);
+                txtStudentContact.setDisable(false);
+                txtStudentAddress.setDisable(false);
+                txtStudentNic.setDisable(false);
+            }
+        });
+
+        txtStudentNic.setOnAction(event -> btnSave.fire());
     }
 
     /**
@@ -138,6 +162,12 @@ public class StudentManageFormController {
             if (CrudUtil.execute("DELETE FROM Student WHERE studentId=?", txtStudentId.getText())) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Deleted!").show();
                 loadAllStudents();
+                txtStudentId.clear();
+                txtStudentName.clear();
+                txtStudentEmail.clear();
+                txtStudentContact.clear();
+                txtStudentAddress.clear();
+                txtStudentNic.clear();
             } else {
                 new Alert(Alert.AlertType.WARNING, "Try Again!").show();
             }
