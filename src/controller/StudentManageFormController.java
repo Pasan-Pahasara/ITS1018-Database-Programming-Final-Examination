@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.Student;
+import util.CrudUtil;
 import views.tm.StudentTM;
 
 import java.sql.Connection;
@@ -69,7 +70,20 @@ public class StudentManageFormController {
     public void btnAddNew_OnAction(ActionEvent actionEvent) {
     }
 
+    /**
+     * Save Students.
+     */
     public void btnSave_OnAction(ActionEvent actionEvent) {
+        Student s = new Student(txtStudentId.getText(), txtStudentName.getText(), txtStudentEmail.getText(), txtStudentContact.getText(), txtStudentAddress.getText(), txtStudentNic.getText());
+        try {
+            if (CrudUtil.execute("INSERT INTO Student VALUES (?,?,?,?,?,?)", s.getStudentId(), s.getStudentName(), s.getEmail(), s.getContact(), s.getAddress(), s.getNic())) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Saved!..").show();
+                loadAllStudents();
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
     }
 
     public void btnDelete_OnAction(ActionEvent actionEvent) {
